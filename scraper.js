@@ -36,6 +36,8 @@ function getAnime(episodeId) {
 			const $ = cheerio.load(body);
 			const $title = $('h1.big-title-truncate.m-t-0').text();
 			const $videoUrl = $('video').attr('src');
+			const $animeUrl = $('video').attr('href');
+			const $poster = $('video[poster]').text();
 
 			const categories = [];
 
@@ -46,6 +48,8 @@ function getAnime(episodeId) {
 
 			return {
 				title: $title,
+				animeUrl: $animeUrl,
+				poster: $poster,
 				categories
 			};
 		});
